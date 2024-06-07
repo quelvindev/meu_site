@@ -3,8 +3,12 @@
 from django.contrib import admin
 from django.urls import path
 from django.http import HttpResponse
+from . import views
 
 
 
-def home(reponse):
-    return HttpResponse('Pagina inicial Django')
+
+urlpatterns = [
+    path('',views.home)
+   
+]

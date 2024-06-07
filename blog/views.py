@@ -5,9 +5,8 @@ from django.http import HttpResponse
 
 def blog(request):
     print('chegou na view')
-    return HttpResponse('Teste blog')
-
+    return render(request,'blog/blog.html')
 
 
 def exemplo(request):
-    return HttpResponse('Teste exemplo')
+    return render(request,'blog/exemplo.html')
