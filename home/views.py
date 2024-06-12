@@ -4,9 +4,15 @@ from django.http import HttpResponse
 
 # Create your views here.
 
+context ={
+    'text':'Dados serão atualizados'
+}
+
 def home(request):
     print('chegou na view')
     return render(request,
-                  'home/home.html')
+                  'home/home.html',
+                  context
+                  )
 
 
