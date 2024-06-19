@@ -1,10 +1,16 @@
 {% include "partials/head.html" %}
+{% include "partials/menu.html" %}
 
-        {% block texto %}Carregando pagina{% endblock texto %}
-    </h1>
+{% block texto %}Carregando pagina{% endblock texto %}
 
-    {% include "partials/postblock.html" %}
+
+<main class="content">
+    {% block posts %}{% endblock posts %}
+    {% block home %}{% endblock home %}
+    
+    
+</main>
 </body>
 
-{% include "partials/menu.html" %}
+
 </html>
