@@ -1,8 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from blog.data import posts
+import requests
+#from blog.data import posts
 
 # Create your views here.
+
+url = 'https://jsonplaceholder.typicode.com/posts'
+
+posts = requests.get(url).json()
+
 
 context ={
     'text':'Dados serão atualizados',
@@ -10,7 +16,15 @@ context ={
 }
 
 def blog(request):
-    print('chegou na view')
+    print(type(context))
+
+  
+    return render(request,'blog/blog.html',context)
+
+
+def post(request,id):
+    context['page'] = 'post'
+    print('chegou na view',id)
     return render(request,'blog/blog.html',context)
 
 
