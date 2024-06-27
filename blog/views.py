@@ -9,23 +9,31 @@ url = 'https://jsonplaceholder.typicode.com/posts'
 
 posts = requests.get(url).json()
 
+found_post = None
 
-context ={
-    'text':'Dados serão atualizados',
-    'posts':posts
-}
+
 
 def blog(request):
-    print(type(context))
-
-  
+    context ={
+    'text':'Dados serão atualizados',
+    'posts':posts
+    }
     return render(request,'blog/blog.html',context)
 
 
 def post(request,id):
-    context['page'] = 'post'
-    print('chegou na view',id)
-    return render(request,'blog/blog.html',context)
+    for post in posts:
+        if post['id'] == id:
+            found_post = post
+            break
+
+    context ={
+    'text':'Dados serão atualizados',
+    'post':found_post
+    }
+    
+    print('chegou na view',found_post)
+    return render(request,'blog/post.html',context)
 
 
 def exemplo(request):

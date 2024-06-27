@@ -1,0 +1,31 @@
+{% extends 'global/index.html' %}
+
+{% if text %}
+  <h1>  {% block texto %} 
+        {{text}}
+  </h1> {% endblock texto %}
+
+
+{% endif %}
+
+{% block posts %}
+
+    <article class="post single-post">
+        <header>
+            <h2 class="post_title">
+            
+                {{post.title}}
+            
+            </h2>
+
+        </header>
+
+    
+    <div class="post_body">
+        {{post.body}}
+    </div>
+
+    </article>
+
+    
+{% endblock posts %}
