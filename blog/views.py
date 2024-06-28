@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpRequest,Http404
+from typing import Any
+
 import requests
 #from blog.data import posts
 
@@ -9,27 +11,33 @@ url = 'https://jsonplaceholder.typicode.com/posts'
 
 posts = requests.get(url).json()
 
-found_post = None
+
 
 
 
 def blog(request):
     context ={
-    'text':'Dados serão atualizados',
-    'posts':posts
+    'text':'',
+    'posts':posts,
+    'title':'Blog'
     }
     return render(request,'blog/blog.html',context)
 
 
-def post(request,id):
+def post(request: HttpRequest,id: int):
+    found_post: dict[str,Any] | None = None
     for post in posts:
         if post['id'] == id:
             found_post = post
             break
 
+    if found_post is None:
+        raise Http404('Post não existe')
+    
     context ={
     'text':'Dados serão atualizados',
-    'post':found_post
+    'post':found_post,
+    
     }
     
     print('chegou na view',found_post)
@@ -37,4 +45,7 @@ def post(request,id):
 
 
 def exemplo(request):
-    return render(request,'blog/exemplo.html')
+    context = {
+        'title':'Exemplo'   
+    }
+    return render(request,'blog/exemplo.html',context)

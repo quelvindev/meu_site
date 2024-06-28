@@ -5,7 +5,8 @@ from django.http import HttpResponse
 # Create your views here.
 
 context ={
-    'text':'Dados serão atualizados'
+    'text':'Dados serão atualizados',
+    'title':'Home'
 }
 
 def home(request):
